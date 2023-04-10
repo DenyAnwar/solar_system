@@ -85,11 +85,108 @@ class _HomePageState extends State<HomePage> {
                     itemBuilder: (context, index) {
                       return InkWell(
                         onTap: () {
-
+                          Navigator.push(
+                            context,
+                            PageRouteBuilder(
+                              opaque: false,
+                              pageBuilder: (context, a, b) => DetailsView(
+                                planetInfo: planets[index],
+                              ),
+                              transitionsBuilder: (
+                                BuildContext context,
+                                Animation<double> animation,
+                                Animation<double> secondaryAnimation,
+                                Widget child,
+                              ) {
+                                return FadeTransition(
+                                  opacity: animation,
+                                  child: child,
+                                );
+                              },
+                            ),
+                          );
                         },
-
+                        child: Stack(
+                          children: <Widget>[
+                            Column(
+                              children: <Widget>[
+                                const SizedBox(
+                                  height: 100,
+                                ),
+                                Card(
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(32),
+                                  ),
+                                  elevation: 8,
+                                  color: Colors.white,
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(32.0),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: <Widget>[
+                                        const SizedBox(
+                                          height: 100,
+                                        ),
+                                        Text(
+                                          planets[index].name.toString(),
+                                          style: const TextStyle(
+                                            fontSize: 40,
+                                            fontFamily: 'Roboto-Regular',
+                                            color: Color(0xff47455f),
+                                            fontWeight: FontWeight.w900,
+                                          ),
+                                          textAlign: TextAlign.left,
+                                        ),
+                                        Text(
+                                          'Solar System',
+                                          style: TextStyle(
+                                            fontSize: 23,
+                                            fontFamily: 'Roboto-Regular',
+                                            color: primaryTextColor,
+                                            fontWeight: FontWeight.w400,
+                                          ),
+                                          textAlign: TextAlign.left,
+                                        ),
+                                        Padding(
+                                          padding:
+                                              const EdgeInsets.only(top: 32.0),
+                                          child: Row(
+                                            children: [
+                                              Text(
+                                                'Know more',
+                                                style: TextStyle(
+                                                  fontSize: 16,
+                                                  fontFamily: 'Roboto-Regular',
+                                                  color: secondaryTextColor,
+                                                  fontWeight: FontWeight.w400,
+                                                ),
+                                                textAlign: TextAlign.left,
+                                              ),
+                                              Icon(
+                                                Icons.arrow_forward_rounded,
+                                                color: secondaryTextColor,
+                                                size: 18,
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            Hero(
+                              tag: planets[index].position,
+                              child: Image.asset(
+                                planets[index].iconImage.toString(),
+                              ),
+                            ),
+                          ],
+                        ),
                       );
-                    }
+                    },
                   ),
                 ),
               ),
