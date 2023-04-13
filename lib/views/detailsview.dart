@@ -111,24 +111,13 @@ class _DetailViewState extends State<DetailsView> {
                           return Card(
                             clipBehavior: Clip.antiAlias,
                             shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(24),
+                              borderRadius: BorderRadius.circular(32),
                             ),
-                            child: GestureDetector(
-                              onTap: () {
-                                setState(() {
-                                  _isZoomed = !_isZoomed;
-                                });
-                              },
-                              child: AnimatedContainer(
-                                duration: Duration(milliseconds: 200),
-                                width: _isZoomed ? 400 : 230,
-                                child: AspectRatio(
-                                  aspectRatio: 1,
-                                  child: Image.network(
-                                    widget.planetInfo!.images![index],
-                                    fit: BoxFit.cover,
-                                  ),
-                                ),
+                            child: AspectRatio(
+                              aspectRatio: 1,
+                              child: Image.network(
+                                widget.planetInfo!.images![index],
+                                fit: BoxFit.cover,
                               ),
                             ),
                           );

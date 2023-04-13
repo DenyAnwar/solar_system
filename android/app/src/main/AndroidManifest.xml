@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="mythgreen.dev.solar_system">
    <application
-        android:label="solar_system"
+        android:label="solar system"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
